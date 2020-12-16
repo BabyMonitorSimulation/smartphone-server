@@ -20,3 +20,7 @@ from .model import (
 )
 
 db.create_all()
+
+from .communication.client_smp import ClientSMP
+
+client_smp = ClientSMP()
