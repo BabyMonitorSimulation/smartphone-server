@@ -7,9 +7,9 @@ client_smp = ClientSMP()
 client_smp.subscribe()
 
 
-@app.route("/check", methods=["GET"])
+@app.route("/", methods=["GET"])
 def check():
-    return "I'm working (Smartphone)"
+    return "I'm working Smartphone"
 
 
 @app.route("/smp_send", methods=["GET"])
