@@ -1,13 +1,10 @@
-from project import app, client_smp
-from flask import request, render_template, send_from_directory, jsonify, send_file
-from project.util.response import construct_response
-from project.services.smartphone_service import insert_data, last_record
-from time import sleep
-from pprint import pprint
-import json
-import requests
-import threading
-import paho.mqtt.client as mqtt
+from project import app
+from flask import request, jsonify
+from project.communication.client_smp import ClientSMP
+
+
+client_smp = ClientSMP()
+client_smp.subscribe()
 
 
 @app.route("/check", methods=["GET"])
@@ -17,6 +14,8 @@ def check():
 
 @app.route("/smp_send", methods=["GET"])
 def send_bm():
+    global client_smp
+    
     client_smp.confirmation = True
 
     body = {

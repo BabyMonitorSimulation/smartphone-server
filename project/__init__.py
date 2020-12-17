@@ -12,15 +12,9 @@ app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///appSmartphone.db"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = True
 db = SQLAlchemy(app)
 
-from .controllers import (
-    main_controller
-)
-from .model import (
-    smartphone_model
-)
+from .controllers import main_controller
+
+from .model import smartphone_model
+
 
 db.create_all()
-
-from .communication.client_smp import ClientSMP
-
-client_smp = ClientSMP()
