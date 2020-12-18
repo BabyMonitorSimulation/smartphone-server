@@ -13,6 +13,6 @@ class ClientSMP:
 
     #send to smp in dojot
     def publish_to_smp(self, confirmation):
-        data = {'msg': 'Confirmation Received' if confirmation else 'Confirmation not received'}
+        data = {'msg': 'Confirmation Received' if confirmation else 'Confirmation not Received'}
         self.client.publish("/gesad/434339/attrs", payload=json.dumps(data))
 
