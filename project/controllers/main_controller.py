@@ -5,8 +5,6 @@ from project.communication.client_smp import ClientSMP
 import threading
 from time import sleep
 
-# ssh -R 80:localhost:5002 ssh.localhost.run
-# SHA256:FSdZh6PAguA0x9qo6rAJsbqcyYW+kpwZC6QHoh2QOqM adrilene.fonseca@aluno.uece.br
 
 client_smp = ClientSMP()
 confirmation = False  # confirmation from user
@@ -39,7 +37,7 @@ def check():
 @app.route("/receive-data", methods=["POST"])
 def receive_data():
     global client_smp, confirmation, call_once
-    print(f'received: {request.json}')
+    print(f"received: {request.json}")
     if request.json["from"] == "bm":
         baby_data = {
             "breathing": request.json["breathing"],
@@ -56,7 +54,7 @@ def receive_data():
     elif request.json["from"] == "tv":
         if request.json["msg"] == "unlocked":
             call_once = True
-            confirmation = True
+            confirmation = False
             data = {
                 "msg": "Confirmation Received",
                 "from": "smp",

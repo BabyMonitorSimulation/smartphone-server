@@ -15,30 +15,22 @@ class ClientSMP(mqtt.Client):
         self.connected = False
 
     def publish_to_dojot(self, data):
-        data['from'] = 'smp'
-        data['to'] = 'tv'
-        data['type'] = 'notification'
+        data["from"] = "smp"
+        data["to"] = "tv"
+        data["type"] = "notification"
         self.connect(host="dojot.atlantico.com.br", port=1883)
-        m = self.publish("/gesad/ff3e63/attrs", payload=json.dumps(data), qos = 1)
-        # while not m.is_published():
-        #     print(m.is_published())
-        #     self.connect(host="dojot.atlantico.com.br", port=1883)
-        #     m = self.publish("/gesad/ff3e63/attrs", payload=json.dumps(data), qos = 1)
-        #     time.sleep(1)
+        self.publish("/gesad/ff3e63/attrs", payload=json.dumps(data), qos=1)
         self.disconnect()
 
     def publish_to_bm(self, data):
-        self.publish("/gesad/829bac/attrs", payload=json.dumps(data), qos=2)
-        # while not m.is_published():
-        #     print(m.is_published())
-        #     self.connect(host="dojot.atlantico.com.br", port=1883)
-        #     m = self.publish("/gesad/829bac/attrs", payload=json.dumps(data))
-        #     time.sleep(1)
+        self.connect(host="dojot.atlantico.com.br", port=1883)
+        self.publish("/gesad/829bac/attrs", payload=json.dumps(data), qos=1)
+        self.disconnect()
 
     def on_publish(self, client, userdata, result):
-        print(result)
+        print('Message published')
 
     def on_connect(self, client, userdata, flags, rc):
         self.connected = True
-        print("Connected with result code "+ str(rc))
+        print("Connected with result code " + str(rc))
 
