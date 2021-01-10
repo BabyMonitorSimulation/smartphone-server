@@ -1,5 +1,6 @@
-from project import app
+from project import app, socketio
 
 
 if __name__ == "__main__":
-    app.run(port=5001, debug=True)
+    print("Smartphone Running")
+    socketio.run(app, port=5001)
