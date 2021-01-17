@@ -19,12 +19,12 @@ class ClientSMP(mqtt.Client):
         data["to"] = "tv"
         data["type"] = "notification"
         self.connect(host="dojot.atlantico.com.br", port=1883)
-        self.publish("/gesad/ff3e63/attrs", payload=json.dumps(data), qos=1)
+        self.publish("/gesad/653e18/attrs", payload=json.dumps(data), qos=1)
         self.disconnect()
 
     def publish_to_bm(self, data):
         self.connect(host="dojot.atlantico.com.br", port=1883)
-        self.publish("/gesad/829bac/attrs", payload=json.dumps(data), qos=1)
+        self.publish("/gesad/58cb7d/attrs", payload=json.dumps(data), qos=1)
         self.disconnect()
 
     def on_publish(self, client, userdata, result):
